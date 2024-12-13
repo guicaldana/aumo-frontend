@@ -89,8 +89,12 @@ export default function Home() {
     fetchUser();
   },[]);
 
-  if(!mainUser){
-    return <div>{loading ? "Loading..." : error}</div>;
+  if (!mainUser) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-gray-100 text-gray-500">
+        {loading ? "Loading..." : error}
+      </div>
+    );
   }
 
   if (loading) {
