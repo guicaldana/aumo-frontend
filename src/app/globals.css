@@ -5,17 +5,58 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --header-background: #9028f0;
+  --shadow: rgb(116,19,212);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --header-background: #9022f3;
   }
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background: linear-gradient(to bottom, var(--header-background) 30%, #ffffff 30%);
   font-family: Arial, Helvetica, sans-serif;
+  
+}
+
+
+h1{
+  @apply hover:underline;
+}
+
+header{
+  box-shadow: 3px 3px 3px 3px var(--shadow);
+}
+
+.top-text {
+  color: white;
+  font-size: 24px; 
+  margin: 15px; 
+  text-align: center;
+}
+
+nav{
+  display: flex;
+  justify-content: end;
+  width: 80%;
+  align-items: center;
+  padding: 0px 20px;
+
+}
+
+/* I need it to be lower in the page */
+.mainCard{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  
+  
 }
