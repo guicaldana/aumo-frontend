@@ -42,7 +42,7 @@ export default function Home() {
   const[error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
-  async function fetchUser() {
+  async function fetchUser(): Promise<User | undefined> {
     try{
       const response = await fetch("https://randomuser.me/api/", { method: "GET" });
       if(!response.ok) throw new Error("Error fetching user");
@@ -76,6 +76,7 @@ export default function Home() {
       
         setMainUser(mappedUser); 
         console.log(mainUser);
+        return mainUser;
     }catch(error){
       setError("Failed to fetch user");
       if (error instanceof Error) {
@@ -110,7 +111,7 @@ export default function Home() {
           <PersonalInfoCard user={mainUser.personal}/>
           <ContactInfoCard user={mainUser.contact}/>
         </div>
-          <SugestionList />
+          <SugestionList/>
       </main>
       
     </div>

@@ -20,7 +20,7 @@ type ProfileProps = {
   fetchUser: () => void;
 }
 
-// import Image from "next/image";
+import Image from "next/image";
 
 
 
@@ -35,21 +35,21 @@ export const Profile = ({user, fetchUser}: ProfileProps) =>{
       {/* Background */}
       
       <div className="profile-pic w-full h-36 overflow-hidden rounded-t-lg relative">
-      {/* {mainUser && (
+      {user && (
 
       <Image
-          src={mainUser.picture}
+          src={user.picture}
           alt="Background"
           layout="fill"
           objectFit="cover" 
           className=" filter blur-sm"
         />
-      )} */}
+      )}
       </div>
 
       {/* Profile Image */}
       <div className="profile-pic mt-[-100px] w-36 h-36 z-10 ">
-      {/* {user && (
+      {user && (
         <Image
           src={user.picture}
           alt="Profile Picture"
@@ -57,7 +57,7 @@ export const Profile = ({user, fetchUser}: ProfileProps) =>{
           height={120}
           className="rounded-full border-4 border-white"
         />
-      )} */}
+      )}
 
       </div>
 
