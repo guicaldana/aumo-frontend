@@ -30,7 +30,12 @@ type User = {
   };
 };
 
-export const SugestionList = () => {
+type SugestionListProps = {
+  savedUsers: User[];
+  setSavedUsers: React.Dispatch<React.SetStateAction<User[]>>;
+}
+
+export const SugestionList = ({savedUsers, setSavedUsers}: SugestionListProps) => {
   const [users, setUsers] = useState<User[]>([]); // Mudei para usar o estado para armazenar os usuários
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
@@ -78,11 +83,17 @@ export const SugestionList = () => {
       }
     }
   }
+
   const followUser = (email: string) => {
+    const userToSave = users.find((user) => user.profile.email === email);
+    if (userToSave && !savedUsers.some((saved) => saved.profile.email === email)) {
+      setSavedUsers((prev) => [...prev, userToSave]);
+    }
     const updatedUsers = users.filter(user => user.profile.email !== email);
     setUsers(updatedUsers); // Atualiza o estado com o array filtrado
-    fetchUser(); // Busca um novo usuário
+    fetchUser();
   };
+ 
 
   // Ao carregar o componente, fazemos o fetch de 5 usuários
   useEffect(() => {

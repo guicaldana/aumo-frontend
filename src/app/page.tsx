@@ -41,6 +41,7 @@ export default function Home() {
   
   const[error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [savedUsers, setSavedUsers] = useState<User[]>([]);
 
   async function fetchUser(): Promise<User | undefined> {
     try{
@@ -87,8 +88,18 @@ export default function Home() {
     }
   }
   useEffect(() => {
+
+    const saved = localStorage.getItem("savedUsers");
+    if(saved){
+      setSavedUsers(JSON.parse(saved));
+    }
     fetchUser();
   },[]);
+
+  useEffect(() => {
+    localStorage.setItem("savedUsers", JSON.stringify(savedUsers));
+  }, [savedUsers]);
+
 
   if (!mainUser) {
     return (
@@ -106,12 +117,12 @@ export default function Home() {
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] ">
      
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start text-black mt-[200px]">
-        <Profile user={mainUser.profile} fetchUser={fetchUser}/>
+        <Profile user={mainUser.profile} fetchUser={fetchUser} setSavedUsers={setSavedUsers} savedUsers={savedUsers}/>
         <div className="flex flex-row">
           <PersonalInfoCard user={mainUser.personal}/>
           <ContactInfoCard user={mainUser.contact}/>
         </div>
-          <SugestionList/>
+          <SugestionList savedUsers={savedUsers} setSavedUsers={setSavedUsers}/>
       </main>
       
     </div>

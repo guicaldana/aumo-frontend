@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
       <Header />
-      <div className="top-text">Find new Users like you!</div>
+      <div className="top-text">Encontre pessoas como você!</div>
         {children}
       </body>
     </html>
