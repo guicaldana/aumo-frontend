@@ -104,8 +104,8 @@ export const SugestionList = ({
   
   return (
     <div>
-      <h2 className="text-xl font-semibold">Suggestions</h2>
-      <p className="text-gray-500">People you may know</p>
+      <h2 className="text-xl font-semibold">Sugestões</h2>
+      <p className="text-gray-500">Pessoas que você pode conhecer</p>
       <div className="flex gap-4 overflow-x-auto py-2 sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[900px]">
         <div className="flex flex-row">
           {skippedUsers.map((user) => (
