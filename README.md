@@ -3,15 +3,22 @@ Essa é a resolução do desafio  de frontend da AUMO feita por Guilherme Teixei
 ## Como subir
 
 No diretório raiz rode:
-
-```bash
+bash
+```
+npm install
+```
+e então:
+bash
+```
 docker buid -t aumo-frontend-guicaldana
 ```
-
 e depois:
-```bash
+
+bash
+```
 docker run -p 3000:3000 aumo-frontend-guicaldana
 ```
+
 Com isso, o app web já deve estar funcionando em localhost:3000.
 
 ### Observações
