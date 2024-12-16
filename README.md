@@ -20,4 +20,4 @@ Com isso, o app web já deve estar funcionando em localhost:3000.
 
 
 
-- Qualquer dúvida, pode me contatar!
+Qualquer dúvida, pode me contatar!
