@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation"; // Para navegação programática
+import {useRouter} from "next/navigation";
 
 type Location = {
   street: string;
@@ -39,11 +39,6 @@ export const Header = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
-  // Função para salvar no localStorage
-  const saveToLocalStorage = (users: User[]) => {
-    localStorage.setItem("savedUsers", JSON.stringify(users));
-  };
-
   // Função para desfazer seguir
   const unfollowUser = (email: string) => {
     const updatedUsers = savedUsers.filter(
@@ -53,7 +48,6 @@ export const Header = () => {
     saveToLocalStorage(updatedUsers);
   };
 
-  // Atualiza a lista de usuários seguidos periodicamente (agora independentemente do dropdown)
   useEffect(() => {
     const saved = localStorage.getItem("savedUsers");
     if (saved) {
@@ -61,18 +55,35 @@ export const Header = () => {
     }
   }, []);
 
+  useEffect(() => {
+      saveToLocalStorage(savedUsers);
+
+  }, [savedUsers]); // Salva sempre que os usuários mudarem
+  
   // Atualiza a lista de usuários seguidos periodicamente
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
 
-    interval = setInterval(() => {
-      saveToLocalStorage(savedUsers); // Salvando a lista no localStorage periodicamente
-    }, 5000);
+   
+      const saved = localStorage.getItem("savedUsers");
+      if (saved) {
+        setSavedUsers(JSON.parse(saved));
+      
+
+      interval = setInterval(() => {
+        const saved = localStorage.getItem("savedUsers");
+        if (saved) {
+          setSavedUsers(JSON.parse(saved));
+        }
+      }, 1000);
+    } else if (interval) {
+      clearInterval(interval);
+    }
 
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [savedUsers]);
+  }, [isDropdownOpen]);
 
   // Fecha dropdown se clicar fora dele
   useEffect(() => {
@@ -89,15 +100,18 @@ export const Header = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Função para ir para a Home e garantir que os dados sejam mantidos
-  const handleHomeClick = () => {
-    saveToLocalStorage(savedUsers); // Garante que os dados estejam salvos no localStorage
-    router.push("/"); // Navega para a Home
-  };
-
-  // Funções para controlar o estado do dropdown e menu responsivo
   const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+
+
+  const saveToLocalStorage = (users: User[]) => {
+    localStorage.setItem("savedUsers", JSON.stringify(users));
+  };
+  
+  const handleHomeClick = () => {
+    localStorage.setItem("savedUsers", JSON.stringify(savedUsers)); // Salva os dados no localStorage
+    router.push("/"); // Navega para a Home
+  };
 
   return (
     <header className="flex bg-[var(--header-background)] py-4 px-5 items-center justify-between relative">
@@ -117,7 +131,7 @@ export const Header = () => {
       {/* Menu Principal */}
       <nav
         className={`absolute sm:relative top-full left-0 w-full sm:w-auto sm:block bg-white sm:bg-transparent border sm:border-none shadow-md sm:shadow-none z-10 ${
-          isMenuOpen ? "block text-black " : "hidden "
+          isMenuOpen ? "block text-black" : "hidden"
         }`}
       >
         <ul className="flex flex-col sm:flex-row items-center gap-4 p-4 sm:p-0">
@@ -139,7 +153,7 @@ export const Header = () => {
             </Link>
           </li>
           <li>
-            <button
+          <button
               onClick={handleHomeClick} // Chama a função para garantir que os dados sejam salvos
               className="text-[var(--header-text)] cursor-pointer"
             >
