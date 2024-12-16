@@ -23,7 +23,7 @@ type User = {
   };
   personal: {
     dateOfBirth: string;
-    age: number;
+    nat: string;
   };
 };
 
@@ -39,6 +39,8 @@ type ProfileProps = {
   fetchUser: () => void;
   setSavedUsers: React.Dispatch<React.SetStateAction<User[]>>;
   savedUsers: User[];
+  skippedUsers: User[];
+  setSkippedUsers: React.Dispatch<React.SetStateAction<User[]>>;
 };
 
 import Image from "next/image";
@@ -49,6 +51,7 @@ export const Profile = ({
   fetchUser,
   setSavedUsers,
   savedUsers,
+  setSkippedUsers,
 }: ProfileProps) => {
   const isFollowed = savedUsers.some(
     (savedUser) => savedUser.profile.email === user.email
@@ -102,7 +105,7 @@ export const Profile = ({
         },
         personal: {
           dateOfBirth: "", // Preencha com valores padrão ou ajuste conforme necessário
-          age: 0, // Preencha com valores padrão ou ajuste conforme necessário
+          nat: "", // Preencha com valores padrão ou ajuste conforme necessário
         },
       };
 
@@ -112,7 +115,52 @@ export const Profile = ({
     });
   };
 
+  const handleSkipUser = () => {
+    setSkippedUsers((prevSkippedUsers) => {
+      // Verifica se o usuário já foi seguido
+      const isUserFollowed = savedUsers.some(
+        (savedUser) => savedUser.profile.email === user.email
+      );
+      if (isUserFollowed) {
+        return prevSkippedUsers; // Não adiciona o usuário aos pulados
+      }
 
+      // Verifica se o usuário já está na lista de skippedUsers
+      const isUserSkipped = prevSkippedUsers.some(
+        (skippedUser) => skippedUser.profile.email === user.email
+      );
+      if (isUserSkipped) return prevSkippedUsers;
+
+      // Cria um objeto do tipo User para adicionar ao array
+      const skippedUser: User = {
+        profile: user,
+        contact: {
+          email: user.email,
+          phone: user.phone,
+        },
+        personal: {
+          dateOfBirth: "", // Preencha com valores padrão, se necessário
+          nat: "", // Preencha com valores padrão, se necessário
+        },
+      };
+
+      const updatedSkippedUsers = [...prevSkippedUsers, skippedUser];
+      // Atualiza o localStorage
+      localStorage.setItem("skippedUsers", JSON.stringify(updatedSkippedUsers));
+      return updatedSkippedUsers;
+    });
+
+    // Chama a função para buscar o próximo usuário
+    fetchUser();
+  };
+
+  useEffect(() => {
+    const skipped = localStorage.getItem("skippedUsers");
+    if (skipped) {
+      const usersFromLocalStorage = JSON.parse(skipped);
+      setSkippedUsers(usersFromLocalStorage);
+    }
+  }, [setSkippedUsers]);
 
   return (
     <div className="flex flex-col grow items-center bg-white shadow-lg rounded-lg sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[900px] relative mt-[-350px]">
@@ -165,7 +213,7 @@ export const Profile = ({
         </button>
         <button
           className="bg-gray-200 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-300"
-          onClick={fetchUser}
+          onClick={handleSkipUser}
         >
           Próximo Usuário
         </button>

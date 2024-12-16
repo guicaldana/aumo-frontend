@@ -33,6 +33,10 @@ header{
   box-shadow: 3px 3px 3px 3px var(--shadow);
 }
 
+.followedUsers{
+  box-shadow: 3px 3px 3px 3px var(--shadow);
+}
+
 .top-text {
   color: white;
   font-size: 24px; 

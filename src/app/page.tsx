@@ -32,7 +32,7 @@ export default function Home() {
     },
     personal:{
       dateOfBirth: string;
-      age: number;
+      nat: string;
     }
 
   };
@@ -42,6 +42,7 @@ export default function Home() {
   const[error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [savedUsers, setSavedUsers] = useState<User[]>([]);
+  const [skippedUsers, setSkippedUsers] = useState<User[]>([]);
 
   async function fetchUser(): Promise<User | undefined> {
     try{
@@ -70,7 +71,7 @@ export default function Home() {
           },
           personal:{
             dateOfBirth: user.dob.date,
-            age: user.dob.age,
+            nat: user.nat,
           }
 
         };
@@ -117,12 +118,12 @@ export default function Home() {
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] ">
      
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start text-black mt-[200px]">
-        <Profile user={mainUser.profile} fetchUser={fetchUser} setSavedUsers={setSavedUsers} savedUsers={savedUsers}/>
+        <Profile user={mainUser.profile} fetchUser={fetchUser} setSavedUsers={setSavedUsers} savedUsers={savedUsers} skippedUsers={skippedUsers} setSkippedUsers={setSkippedUsers}/>
         <div className="flex flex-row">
           <PersonalInfoCard user={mainUser.personal}/>
           <ContactInfoCard user={mainUser.contact}/>
         </div>
-          <SugestionList savedUsers={savedUsers} setSavedUsers={setSavedUsers}/>
+          <SugestionList skippedUsers={skippedUsers} setSkippedUsers={setSkippedUsers} setSavedUsers={setSavedUsers} savedUsers={savedUsers}/>
       </main>
       
     </div>

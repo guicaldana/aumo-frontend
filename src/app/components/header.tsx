@@ -97,16 +97,16 @@ export const Header = () =>{
           className="text-[var(--header-text)] cursor-pointer"
           onClick={toggleDropdown}
         >
-          Usuários seguidos
+          {savedUsers.length} Usuários seguidos
         </a>
         {isDropdownOpen && (
-  <div className="absolute top-full mt-2 bg-[var(--header-background)] shadow-lg border rounded-md w-64 z-50 max-h-60 overflow-y-auto">
+  <div className="followedUsers absolute top-full mt-2 text-black bg-gray-50 shadow-lg border rounded-md w-64 z-50 max-h-60 overflow-y-auto">
     <ul>
       {savedUsers.length > 0 ? (
         savedUsers.map((user) => (
           <li
             key={user.profile.email}
-            className="flex items-center gap-2 px-4 py-2 hover:bg-[var(--shadow)]"
+            className="flex items-center gap-2 px-4 py-2 hover:bg-gray-500"
           >
             <Image 
             src={user.profile.picture}

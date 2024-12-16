@@ -1,7 +1,7 @@
 type ProfileProps = {
   user: {
     dateOfBirth: string;
-    age: number;
+    nat: string;
   }
 }
 
@@ -18,7 +18,7 @@ export const PersonalInfoCard = ({user}: ProfileProps) =>{
       <div className="mt-10 text-center">
         <h2 className="text-md font-semibold">Informações Pessoais</h2>
         <p className="text-gray-500"> <b>Nascido em: </b>{formatDate(user.dateOfBirth.split("T")[0])}</p>
-        <p className="text-gray-500"><b>Idade: </b>{user.age} anos</p>
+        <p className="text-gray-500"><b>Natalidade: </b>{user.nat}</p>
       </div>
       {/* Buttons */}
       <div className="mt-4 mb-4 flex justify-end gap-4">
