@@ -88,7 +88,7 @@ export const SugestionList = ({
   }, [setSavedUsers, setSkippedUsers]);
 
   if (!skippedUsers.length) {
-    return <div className="text-center">No skipped users available</div>;
+    return <div className="text-center">Não há sugestões de usuários</div>;
   }
   const removeUser = (email: string) => {
     // Remove o usuário de skippedUsers
