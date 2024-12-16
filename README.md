@@ -22,7 +22,7 @@ docker run -p 3000:3000 aumo-frontend-guicaldana
 Com isso, o app web já deve estar funcionando em localhost:3000.
 
 ### Observações
-- Devido ao tempo corrido da faculdade, alguns bugs ainda ficaram. Creio que o principal deles seja o fato de que ao retornar a Home da página de meu perfil, o local storage esteja sendo limpado.
+- Devido ao tempo corrido da faculdade, foquei em fazer a lógica de seguir, então acabou ficando sem a tela com meu perfil. 
 - Responsividade no mobile pode não estar das melhores
 
 
