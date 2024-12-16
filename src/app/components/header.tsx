@@ -64,7 +64,7 @@ export const Header = () => {
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
 
-   
+      // Chama a função para carregar os seguidores imediatamente
       const saved = localStorage.getItem("savedUsers");
       if (saved) {
         setSavedUsers(JSON.parse(saved));
