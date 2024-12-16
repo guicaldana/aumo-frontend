@@ -93,15 +93,17 @@ export const SugestionList = ({
   const removeUser = (email: string) => {
     // Remove o usuário de skippedUsers
     setSkippedUsers((prevSkippedUsers) => {
-      const updatedSkippedUsers = prevSkippedUsers.filter((user) => user.profile.email !== email);
-  
+      const updatedSkippedUsers = prevSkippedUsers.filter(
+        (user) => user.profile.email !== email
+      );
+
       // Atualiza o localStorage com a nova lista de skippedUsers
       localStorage.setItem("skippedUsers", JSON.stringify(updatedSkippedUsers));
-  
+
       return updatedSkippedUsers;
     });
   };
-  
+
   return (
     <div>
       <h2 className="text-xl font-semibold">Sugestões</h2>
@@ -110,7 +112,11 @@ export const SugestionList = ({
         <div className="flex flex-row">
           {skippedUsers.map((user) => (
             <div className="pr-1" key={user.contact.email}>
-              <SugestionCard user={user} followUser={followUser} removeUser={removeUser}/>
+              <SugestionCard
+                user={user}
+                followUser={followUser}
+                removeUser={removeUser}
+              />
             </div>
           ))}
         </div>

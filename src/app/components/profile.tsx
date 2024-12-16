@@ -59,7 +59,7 @@ export const Profile = ({
   const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
-    // Verifique o localStorage quando o componente for montado e atualize a lista de savedUsers
+    // Verifica o localStorage quando o componente for montado e atualize a lista de savedUsers
     const saved = localStorage.getItem("savedUsers");
     if (saved) {
       const usersFromLocalStorage = JSON.parse(saved);
@@ -87,7 +87,7 @@ export const Profile = ({
 
   const handleFollow = () => {
     setSavedUsers((prevUsers) => {
-      // Verifique se o usuário já foi seguido
+      // Verifica se o usuário já foi seguido
       const isUserFollowed = prevUsers.some(
         (savedUser) => savedUser.profile.email === user.email
       );
@@ -96,7 +96,7 @@ export const Profile = ({
         return prevUsers;
       }
 
-      // Adicione o usuário ao array como um objeto válido do tipo `User`
+      // Cria um objeto do tipo User para adicionar ao array
       const newUser: User = {
         profile: user,
         contact: {
@@ -104,8 +104,8 @@ export const Profile = ({
           phone: user.phone,
         },
         personal: {
-          dateOfBirth: "", // Preencha com valores padrão ou ajuste conforme necessário
-          nat: "", // Preencha com valores padrão ou ajuste conforme necessário
+          dateOfBirth: "",
+          nat: "",
         },
       };
 
@@ -139,8 +139,8 @@ export const Profile = ({
           phone: user.phone,
         },
         personal: {
-          dateOfBirth: "", // Preencha com valores padrão, se necessário
-          nat: "", // Preencha com valores padrão, se necessário
+          dateOfBirth: "",
+          nat: "",
         },
       };
 
