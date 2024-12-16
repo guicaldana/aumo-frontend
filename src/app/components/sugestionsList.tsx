@@ -105,10 +105,10 @@ export const SugestionList = ({
   };
 
   return (
-    <div>
+    <div className="allSugestions">
       <h2 className="text-xl font-semibold">Sugestões</h2>
       <p className="text-gray-500">Pessoas que você pode conhecer</p>
-      <div className="flex gap-4 overflow-x-auto py-2 sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[900px]">
+      <div className="sugestionsList flex gap-4 overflow-x-auto py-2 sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[900px]">
         <div className="flex flex-row">
           {skippedUsers.map((user) => (
             <div className="pr-1" key={user.contact.email}>

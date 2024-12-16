@@ -121,9 +121,15 @@ export default function Home() {
           skippedUsers={skippedUsers}
           setSkippedUsers={setSkippedUsers}
         />
-        <div className="flex flex-row">
+        <div className="infoCards flex flex-row">
+          <div className="personalCard">
+
           <PersonalInfoCard user={mainUser.personal} />
+          </div>
+          <div className="contactCard">
           <ContactInfoCard user={mainUser.contact} />
+
+          </div>
         </div>
         <SugestionList
           skippedUsers={skippedUsers}

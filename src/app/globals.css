@@ -53,14 +53,29 @@ nav{
 
 }
 
-/* I need it to be lower in the page */
-.mainCard{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 20px;
-  padding: 20px;
-  
-  
+@media (max-width: 640px) {
+  .mainCard{
+    margin: 0px;
+    padding: 0px;
+    margin-top: -300px;
+    width: 500px;
+  }
+  .sugestionsList{
+    overflow-x:auto;
+    max-width: 500px;
+  }
+  .contactCard{
+    width: 500px;
+  }
+  .personalCard{
+    width: 500px;
+    margin-bottom: 3px;
+  }
+  .infoCards{
+    flex-direction: column;
+  }
+  .allSugestions{
+    justify-content: start;
+    width: 500px;
+  }
 }

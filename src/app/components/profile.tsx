@@ -163,7 +163,7 @@ export const Profile = ({
   }, [setSkippedUsers]);
 
   return (
-    <div className="flex flex-col grow items-center bg-white shadow-lg rounded-lg sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[900px] relative mt-[-350px]">
+    <div className="mainCard flex flex-col grow items-center bg-white shadow-lg rounded-lg sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[900px] relative mt-[-350px]">
       {/* Background */}
 
       <div className="profile-pic w-full h-36 overflow-hidden rounded-t-lg relative">
@@ -199,7 +199,7 @@ export const Profile = ({
         </p>
       </div>
       {/* Buttons */}
-      <div className="mt-4 mb-4 flex justify-center gap-4">
+      <div className="profileButtons mt-4 mb-4 flex justify-center gap-4 flex-col sm:flex-row">
         <button
           className={`py-2 px-4 rounded-lg ${
             isFollowed
