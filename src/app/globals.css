@@ -58,17 +58,17 @@ nav{
     margin: 0px;
     padding: 0px;
     margin-top: -300px;
-    width: 500px;
+    width: 350px;
   }
   .sugestionsList{
     overflow-x:auto;
-    max-width: 500px;
+    max-width: 350px;
   }
   .contactCard{
-    width: 500px;
+    width: 350px;
   }
   .personalCard{
-    width: 500px;
+    width: 350px;
     margin-bottom: 3px;
   }
   .infoCards{
@@ -76,6 +76,6 @@ nav{
   }
   .allSugestions{
     justify-content: start;
-    width: 500px;
+    width: 350px;
   }
 }
